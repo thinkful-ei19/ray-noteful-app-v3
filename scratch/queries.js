@@ -6,6 +6,8 @@ const { MONGODB_URI } = require('../config');
 
 const Note = require('../models/note');
 
+//GET ALL NOTES
+
 mongoose.connect(MONGODB_URI)
   .then(() => {
     const searchTerm = 'lady gaga';
@@ -34,7 +36,9 @@ mongoose.connect(MONGODB_URI)
     console.error(err);
   });
 
-// mongoose.connect(MONGODB_URI)
+//GET SINGLE NOTE
+
+  // mongoose.connect(MONGODB_URI)
 //   .then(() => {
 
 //     const id = '000000000000000000000007';
@@ -55,6 +59,8 @@ mongoose.connect(MONGODB_URI)
 //     console.error(err);
 //   });
 
+
+//POST/CREATE NEW NOTE
 
 //   mongoose.connect(MONGODB_URI)
 //   .then(() => {
@@ -79,6 +85,8 @@ mongoose.connect(MONGODB_URI)
 //     console.error(`ERROR: ${err.message}`);
 //     console.error(err);
 //   });
+
+//PUT/UPDATE NOTE
 
 //   mongoose.connect(MONGODB_URI)
 //   .then(() => {
@@ -106,6 +114,7 @@ mongoose.connect(MONGODB_URI)
 //   });
 
 
+//DELETE NOTE
 
 //   mongoose.connect(MONGODB_URI)
 //   .then(() => {
