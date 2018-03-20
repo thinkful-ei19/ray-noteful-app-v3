@@ -1,12 +1,15 @@
 'use strict';
 
 const express = require('express');
+const mongoose = require('mongoose');
+const Note = require('../models/note');
+
 // Create an router instance (aka "mini-app")
 const router = express.Router();
 
 /* ========== GET/READ ALL ITEM ========== */
 router.get('/notes', (req, res, next) => {
-
+  
   console.log('Get All Notes');
   res.json([
     { id: 1, title: 'Temp 1' }, 
