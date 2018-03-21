@@ -92,7 +92,9 @@ router.put('/notes/:id', (req, res, next) => {
     content: content
   };
 
-  return Note.findByIdAndUpdate(id, updateNote)
+  const option = {new: true};
+  
+  return Note.findByIdAndUpdate(id, updateNote, option)
     .then(results => {
       res.json(results);
     })
