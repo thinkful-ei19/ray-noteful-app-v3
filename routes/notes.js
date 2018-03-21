@@ -22,7 +22,9 @@ router.get('/notes', (req, res, next) => {
       .then(results => {
         res.json(results);
       })
-      .catch(next);
+      .catch(err => {
+        res.json(err);
+      });
   });
   
   // .catch(err => {
@@ -52,8 +54,9 @@ router.get('/notes/:id', (req, res, next) => {
     .then(results => {
       res.json(results);
     })
-    .catch(next);
-
+    .catch(err => {
+      res.json(err);
+    });
 });
 
 /* ========== POST/CREATE AN ITEM ========== */
@@ -76,7 +79,9 @@ router.post('/notes', (req, res, next) => {
     .then(results => {
       res.location(`/api/notes/${id}`).status(201).json(results);
     })
-    .catch(next);
+    .catch(err => {
+      res.json(err);
+    });
   // console.log('Create a Note');
   // res.location(`/api/notes/${id}`).status(201).json();
 
@@ -110,7 +115,9 @@ router.put('/notes/:id', (req, res, next) => {
     .then(results => {
       res.json(results);
     })
-    .catch(next);
+    .catch(err => {
+      res.json(err);
+    });
 
   // console.log('Update a Note');
   // res.json({ id: 2 });
@@ -131,9 +138,11 @@ router.delete('/notes/:id', (req, res, next) => {
     .then(() => {
       res.status(204).end();
     })
-    .catch(err => next(err));
+    .catch(err => {
+      res.json(err);
+    });
 
-  //   console.log('Delete a Note');
+  // console.log('Delete a Note');
   // res.status(204).end();
 
 });
