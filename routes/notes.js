@@ -87,11 +87,17 @@ router.put('/notes/:id', (req, res, next) => {
   const id = req.params.id;
   const {title, content} = req.body;
 
-  // if (!req.body.title) {
-  //   const err = new Error('Missing `title` in request body');
-  //   err.status = 400;
-  //   return next(err);
-  // }
+  if(!title) {
+    const err = new Error('Missing `title` in request body');
+    err.status = 400;
+    return next(err);
+  }
+  
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    const err = new Error('The `id` is not valid');
+    err.status = 400;
+    return next(err);
+  }
 
   const updateNote = {
     title: title,
@@ -115,13 +121,19 @@ router.put('/notes/:id', (req, res, next) => {
 router.delete('/notes/:id', (req, res, next) => {
   const id = req.params.id;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    const err = new Error('The `id` is not valid');
+    err.status = 404;
+    return next(err);
+  }
+
   return Note.findByIdAndRemove(id)
-    .then(results => {
-      res.json(results);
+    .then(() => {
+      res.status(204).end();
     })
     .catch(err => next(err));
 
-  // console.log('Delete a Note');
+  //   console.log('Delete a Note');
   // res.status(204).end();
 
 });
